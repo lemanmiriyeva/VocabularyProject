@@ -1,0 +1,68 @@
+﻿@model WordListViewModel
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MVCWebUI2</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <style type="text/css"></style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link text-light" asp-area=""asp-controller="Word" asp-action="List">Home</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link text-light" asp-area="" asp-controller="Word" asp-action="Create">Add Word</a>
+
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input asp-for="Key"  class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button asp-action="List" asp-controller="Word"  class="btn btn-outline-light my-2 my-sm-0" >Search</button>
+                    <div class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Select Order
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/word/list?sortType=AzerbaijanAtoZ">Order By Azerbaijan Alphabet A to Z</a>
+                            <a class="dropdown-item" href="/word/list?sortType=AzerbaijanZtoA">Order By Azerbaijan Alphabet Z to A</a>
+                            <a class="dropdown-item" href="/word/list?sortType=EnglishAtoZ">Order By English Alphabet A to Z</a>
+                            <a class="dropdown-item" href="/word/list?sortType=EnglishZtoA">Order By English Alphabet Z to A</a>
+                            <a class="dropdown-item" href="/word/list?sortType=date">Order By Date</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            <div class="row">
+                @if (TempData["message"] != null)
+                {
+                    <div class="alert alert-primary">
+                        @TempData["message"]
+                    </div>
+                }
+            </div>
+            <div class="row">
+               
+                <div class="col">@RenderBody()</div>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

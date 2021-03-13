@@ -1,0 +1,24 @@
+﻿@model VocabularyProject.Data.Words
+<h1>Add Word</h1>
+<hr/>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddWord">
+            <div class="form-group">
+                <label >In Azerbaijan</label><br/>
+                @Html.ValidationMessageFor(x=>x.InAzerbaijan," ",new{@class="field-validation-error"})
+                @Html.TextBoxFor(x => x.InAzerbaijan )
+            </div>
+            <div class="form-group">
+                <label >In English</label><br/>
+                @Html.ValidationMessageFor(x=>x.InEnglish," ",new{@class="field-validation-error"})
+                @Html.TextBoxFor(x=>x.InEnglish)
+                <span class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Add" class="btn btn-success" asp-action="AddWord"/>
+            </div>
+        </form>
+    </div>
+</div>
+

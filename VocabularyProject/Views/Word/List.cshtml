@@ -1,0 +1,39 @@
+﻿@model WordListViewModel
+@{
+    ViewData["Title"] = "List";
+}
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            In Azerbaijan
+        </th>
+        <th>
+            In English
+        </th>
+        <th>
+            Added Time
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.Words)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.InAzerbaijan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InEnglish)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AddedTime)
+            </td>
+            <td>
+               <a href="@Url.Action("DeleteWord",new {item.Id})"class="btn btn-danger">Delete</a>
+            </td>
+
+        </tr>
+    }
+    </tbody>
+</table>
